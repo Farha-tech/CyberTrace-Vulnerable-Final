@@ -1,0 +1,40 @@
+﻿@model CyberTrace.Models.EmailChangeModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Secure CSRF</title>
+</head>
+
+<body>
+
+    <h1>Secure CSRF Protection</h1>
+
+    <p>Current Email: @Model.CurrentEmail</p>
+
+    @if (ViewBag.Message != null)
+    {
+        <p>@ViewBag.Message</p>
+    }
+
+    <form asp-controller="Csrf"
+          asp-action="Secure"
+          method="post">
+
+        @Html.AntiForgeryToken()
+
+        <label>New Email:</label>
+
+        <input type="email"
+               name="NewEmail"
+               value="" />
+
+        <button type="submit">
+            Change Email
+        </button>
+
+    </form>
+
+</body>
+</html>

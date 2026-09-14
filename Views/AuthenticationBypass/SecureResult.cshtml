@@ -1,0 +1,103 @@
+﻿@{
+    ViewData["Title"] = "Authentication Bypass Secure Result";
+}
+
+<div class="container mt-5">
+
+    <div class="card border-success shadow">
+
+        <div class="card-header bg-success text-white">
+
+            <h2>
+                🟢 Authentication Bypass - Secure Result
+            </h2>
+
+        </div>
+
+        <div class="card-body">
+
+            @if (ViewBag.Success != null)
+            {
+                <div class="alert alert-success">
+
+                    <h5>
+                        Authentication Successful
+                    </h5>
+
+                    <p class="mb-0">
+                        @ViewBag.Success
+                    </p>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <strong>Server Assigned Role:</strong>
+
+                    <span class="badge bg-success">
+                        @ViewBag.Role
+                    </span>
+
+                </div>
+
+                <div class="alert alert-success">
+
+                    <strong>Why is this secure?</strong>
+
+                    <p class="mb-0 mt-2">
+
+                        The application verified the username and
+                        password on the server before assigning
+                        administrative privileges.
+
+                        Client-controlled role values are ignored.
+
+                    </p>
+
+                </div>
+            }
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger">
+
+                    <h5>
+                        Authentication Blocked
+                    </h5>
+
+                    <p class="mb-0">
+                        @ViewBag.Error
+                    </p>
+
+                </div>
+
+                <div class="alert alert-success">
+
+                    <strong>Security Protection:</strong>
+
+                    <p class="mb-0 mt-2">
+
+                        The secure implementation does not trust the
+                        role value submitted by the client.
+
+                        Valid credentials are required before access
+                        is granted.
+
+                    </p>
+
+                </div>
+            }
+
+            <a asp-controller="AuthenticationBypass"
+               asp-action="Index"
+               class="btn btn-secondary">
+
+                Back to Authentication Bypass Lab
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

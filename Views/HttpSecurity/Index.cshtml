@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>HTTP Security Lab</title>
+
+    <style>
+            body {
+                font-family: Arial, sans-serif;
+                background: #0f172a;
+                color: white;
+                padding: 40px;
+            }
+
+            .container {
+                max-width: 900px;
+                margin: auto;
+            }
+
+            h1 {
+                color: #38bdf8;
+            }
+
+            .card {
+                background: #1e293b;
+                padding: 25px;
+                margin-top: 20px;
+                border-radius: 12px;
+            }
+
+            input {
+                width: 100%;
+                padding: 12px;
+                margin: 8px 0;
+                border-radius: 6px;
+                border: none;
+                box-sizing: border-box;
+            }
+
+            button {
+                padding: 12px 20px;
+                margin: 10px 5px 10px 0;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-weight: bold;
+            }
+
+            .vulnerable {
+                background: #ef4444;
+                color: white;
+            }
+
+            .secure {
+                background: #22c55e;
+                color: white;
+            }
+
+            #result {
+                margin-top: 20px;
+                padding: 20px;
+                background: #020617;
+                border-radius: 8px;
+                min-height: 50px;
+            }
+
+            .success {
+                color: #22c55e;
+                font-weight: bold;
+            }
+
+            .error {
+                color: #ef4444;
+                font-weight: bold;
+            }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>HTTP Authentication & Security Headers Lab</h1>
+
+        <div class="card">
+
+            <h2>Basic Authentication Test</h2>
+
+            <p>
+                This lab demonstrates HTTP Basic Authentication
+                and compares vulnerable and secure configurations.
+            </p>
+
+            <label>Username</label>
+
+            <input type="text"
+                   id="username"
+                   value="admin" />
+
+            <label>Password</label>
+
+            <input type="password"
+                   id="password"
+                   value="admin123" />
+
+            <br />
+
+            <button class="vulnerable"
+                    onclick="testAuthentication('Vulnerable')">
+                Test Vulnerable Authentication
+            </button>
+
+            <button class="secure"
+                    onclick="testAuthentication('Secure')">
+                Test Secure Authentication
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>HTTP Security Headers</h2>
+
+            <p>
+                Test the HTTP response headers configured by CyberTrace.
+            </p>
+
+            <button class="vulnerable"
+                    onclick="openEndpoint('/HttpSecurity/Vulnerable')">
+                Open Vulnerable Endpoint
+            </button>
+
+            <button class="secure"
+                    onclick="openEndpoint('/HttpSecurity/Secure')">
+                Open Secure Endpoint
+            </button>
+
+        </div>
+
+
+        <div id="result">
+            Test result will appear here...
+        </div>
+
+    </div>
+
+
+    <script>
+
+            async function testAuthentication(type) {
+
+                const username =
+                    document.getElementById("username").value;
+
+                const password =
+                    document.getElementById("password").value;
+
+                const credentials =
+                    btoa(username + ":" + password);
+
+                const endpoint =
+                    type === "Vulnerable"
+                        ? "/HttpSecurity/Vulnerable"
+                        : "/HttpSecurity/Secure";
+
+                const result =
+                    document.getElementById("result");
+
+                result.innerHTML =
+                    "Testing " + type + " authentication...";
+
+                try {
+
+                    const response = await fetch(endpoint, {
+                        method: "GET",
+
+                        headers: {
+                            "Authorization":
+                                "Basic " + credentials
+                        }
+                    });
+
+                    if (response.status === 200) {
+
+                        result.innerHTML =
+                            "<div class='success'>" +
+                            "Authentication successful.<br><br>" +
+                            "Endpoint: " + endpoint +
+                            "<br>Status Code: " +
+                            response.status +
+                            "</div>";
+
+                    }
+                    else {
+
+                        result.innerHTML =
+                            "<div class='error'>" +
+                            "Authentication failed.<br><br>" +
+                            "Endpoint: " + endpoint +
+                            "<br>Status Code: " +
+                            response.status +
+                            "</div>";
+
+                    }
+
+                }
+                catch (error) {
+
+                    result.innerHTML =
+                        "<div class='error'>" +
+                        "Request failed: " +
+                        error +
+                        "</div>";
+
+                }
+            }
+
+
+            function openEndpoint(endpoint) {
+
+                window.open(
+                    endpoint,
+                    "_blank"
+                );
+
+            }
+
+    </script>
+
+</body>
+</html>

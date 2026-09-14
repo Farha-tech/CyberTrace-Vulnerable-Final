@@ -1,0 +1,90 @@
+﻿@{
+    ViewData["Title"] = "Dictionary Attack Vulnerable Result";
+}
+
+<div class="container mt-5">
+
+    <div class="card border-danger shadow">
+
+        <div class="card-header bg-danger text-white">
+
+            <h2>
+                🔴 Dictionary Attack - Vulnerable Result
+            </h2>
+
+        </div>
+
+        <div class="card-body">
+
+            @if (ViewBag.Success != null)
+            {
+                <div class="alert alert-success">
+
+                    <h5>
+                        Authentication Successful
+                    </h5>
+
+                    <p class="mb-0">
+                        @ViewBag.Success
+                    </p>
+
+                </div>
+            }
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger">
+
+                    <strong>
+                        Authentication Failed:
+                    </strong>
+
+                    <p class="mb-0">
+                        @ViewBag.Error
+                    </p>
+
+                </div>
+            }
+
+            <div class="mb-3">
+
+                <strong>Username:</strong>
+
+                <code>
+                    @ViewBag.Username
+                </code>
+
+            </div>
+
+            <div class="alert alert-warning">
+
+                <h5>
+                    Why is this vulnerable?
+                </h5>
+
+                <p class="mb-0">
+
+                    The application allows unlimited authentication
+                    attempts without rate limiting or temporary
+                    account blocking.
+
+                    An attacker can repeatedly test passwords from
+                    a dictionary until the correct password is found.
+
+                </p>
+
+            </div>
+
+            <a asp-controller="DictionaryAttack"
+               asp-action="Index"
+               class="btn btn-secondary">
+
+                Back to Dictionary Attack Lab
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

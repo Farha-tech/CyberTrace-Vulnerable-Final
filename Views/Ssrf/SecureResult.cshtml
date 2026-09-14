@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "SSRF Secure Result";
+}
+
+<div class="container mt-5">
+
+    <div class="card border-success shadow">
+
+        <div class="card-header bg-success text-white">
+
+            <h2>
+                🟢 SSRF Secure Result
+            </h2>
+
+        </div>
+
+        <div class="card-body">
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-success">
+
+                    <strong>Request Blocked:</strong>
+
+                    @ViewBag.Error
+
+                </div>
+
+                <div class="alert alert-info">
+
+                    <strong>Why was it blocked?</strong>
+
+                    <p class="mb-0 mt-2">
+
+                        The secure implementation validates the URL
+                        before making the server-side request and
+                        blocks localhost and private network addresses.
+
+                    </p>
+
+                </div>
+            }
+            else
+            {
+                <div class="mb-3">
+
+                    <strong>Requested URL:</strong>
+
+                    <div class="mt-2">
+                        <code>
+                            @ViewBag.TargetUrl
+                        </code>
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <strong>HTTP Status Code:</strong>
+
+                    <span class="badge bg-secondary">
+                        @ViewBag.StatusCode
+                    </span>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <strong>Server Response:</strong>
+
+                    <pre class="bg-dark text-light p-3 rounded"
+                         style="white-space: pre-wrap;">@ViewBag.Response</pre>
+
+                </div>
+
+                <div class="alert alert-success">
+
+                    The request was allowed because the destination
+                    passed the security validation.
+
+                </div>
+            }
+
+            <a asp-controller="Ssrf"
+               asp-action="Index"
+               class="btn btn-secondary">
+
+                Back to SSRF Lab
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

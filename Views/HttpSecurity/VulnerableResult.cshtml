@@ -1,0 +1,151 @@
+﻿@{
+    ViewData["Title"] = "HTTP Security Vulnerable Result";
+}
+
+<div class="container mt-5">
+
+    <div class="card border-danger shadow">
+
+        <div class="card-header bg-danger text-white">
+
+            <h2>
+                🔴 Vulnerable HTTP Security Result
+            </h2>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="alert alert-danger">
+
+                <h5>
+                    Security Headers Issue Detected
+                </h5>
+
+                <p class="mb-0">
+                    @ViewBag.Message
+                </p>
+
+            </div>
+
+
+            <div class="card border-warning mb-4">
+
+                <div class="card-header bg-warning">
+
+                    <strong>
+                        Information Disclosure
+                    </strong>
+
+                </div>
+
+                <div class="card-body">
+
+                    <p class="mb-2">
+                        The response intentionally exposes:
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            X-Powered-By
+                        </li>
+
+                        <li>
+                            X-Debug-Mode
+                        </li>
+
+                        <li>
+                            X-Application-Environment
+                        </li>
+
+                    </ul>
+
+                    <p class="mb-0">
+
+                        These headers can reveal unnecessary information
+                        about the application's environment and behavior.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="card border-danger">
+
+                <div class="card-header">
+
+                    <strong>
+                        Missing Security Headers
+                    </strong>
+
+                </div>
+
+                <div class="card-body">
+
+                    <p>
+                        The vulnerable endpoint does not intentionally
+                        add the following protection headers:
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            X-Content-Type-Options
+                        </li>
+
+                        <li>
+                            X-Frame-Options
+                        </li>
+
+                        <li>
+                            Content-Security-Policy
+                        </li>
+
+                        <li>
+                            Referrer-Policy
+                        </li>
+
+                        <li>
+                            Permissions-Policy
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <div class="alert alert-warning mt-4">
+
+                <strong>
+                    Why is this vulnerable?
+                </strong>
+
+                <p class="mb-0 mt-2">
+
+                    Missing security headers reduce browser-side
+                    security protections, while unnecessary response
+                    headers may disclose implementation details.
+
+                </p>
+
+            </div>
+
+
+            <a asp-controller="HttpSecurity"
+               asp-action="Index"
+               class="btn btn-secondary">
+
+                Back to HTTP Security Lab
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

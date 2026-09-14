@@ -1,0 +1,87 @@
+﻿@{
+    ViewData["Title"] = "CyberTrace";
+}
+
+<div class="hero">
+    <div class="hero-content">
+        <span class="badge">CYBERTRACE SECURITY</span>
+
+        <h1>
+            Discover.
+            <span>Analyze.</span>
+            Secure.
+        </h1>
+
+        <p>
+            CyberTrace is a web security assessment platform
+            designed to identify common vulnerabilities and
+            provide clear security insights.
+        </p>
+
+        <div class="hero-buttons">
+            <a asp-controller="Scan" asp-action="Index" class="btn-primary">
+                Start Security Scan
+            </a>
+
+            <a href="#features" class="btn-secondary">
+                Learn More
+            </a>
+        </div>
+    </div>
+
+    <div class="hero-card">
+        <div class="terminal-header">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="terminal-body">
+            <p><span class="green">></span> CyberTrace Scanner</p>
+            <p><span class="green">></span> Initializing security scan...</p>
+            <p><span class="green">></span> Checking vulnerabilities...</p>
+            <p><span class="green">></span> SQL Injection</p>
+            <p><span class="green">></span> Cross-Site Scripting</p>
+            <p><span class="green">></span> Security analysis completed</p>
+            <p><span class="cursor">_</span></p>
+        </div>
+    </div>
+</div>
+
+<section id="features" class="features">
+    <div class="section-title">
+        <span>SECURITY FEATURES</span>
+        <h2>What CyberTrace Can Analyze</h2>
+    </div>
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            <div class="feature-icon">01</div>
+            <h3>SQL Injection</h3>
+            <p>
+                Identify potential SQL Injection vulnerabilities
+                in web applications.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">02</div>
+            <h3>Cross-Site Scripting</h3>
+            <p>
+                Detect potential XSS vulnerabilities and
+                insecure user input handling.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">03</div>
+            <h3>Security Analysis</h3>
+            <p>
+                Review scan results and understand the
+                security risks affecting the target.
+            </p>
+        </div>
+
+    </div>
+</section>

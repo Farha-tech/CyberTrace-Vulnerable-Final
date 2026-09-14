@@ -1,0 +1,285 @@
+﻿@{
+    ViewData["Title"] = "Dictionary Attack Lab";
+}
+
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+
+        <h1>Dictionary Attack Lab</h1>
+
+        <p class="text-muted">
+            CyberTrace Dictionary Attack Security Lab
+        </p>
+
+    </div>
+
+    <div class="alert alert-info shadow">
+
+        <h5>What is a Dictionary Attack?</h5>
+
+        <p class="mb-0">
+
+            A dictionary attack attempts to authenticate using a
+            list of commonly used or previously known passwords.
+
+            In this lab, the correct password is included in the
+            small training dictionary below.
+
+        </p>
+
+    </div>
+
+    <div class="row">
+
+        <!-- Vulnerable Version -->
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card border-danger shadow">
+
+                <div class="card-header bg-danger text-white">
+
+                    <h4 class="mb-0">
+                        🔴 Vulnerable Version
+                    </h4>
+
+                </div>
+
+                <div class="card-body">
+
+                    <p>
+                        The vulnerable version does not limit the
+                        number of authentication attempts.
+                    </p>
+
+                    <p>
+                        An attacker can repeatedly try passwords
+                        from a dictionary.
+                    </p>
+
+                    <form asp-controller="DictionaryAttack"
+                          asp-action="Vulnerable"
+                          method="post">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Username
+                            </label>
+
+                            <input type="text"
+                                   name="username"
+                                   class="form-control"
+                                   value="admin"
+                                   required />
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Password
+                            </label>
+
+                            <input type="text"
+                                   name="password"
+                                   class="form-control"
+                                   placeholder="Try a dictionary password"
+                                   required />
+
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-danger">
+
+                            Try Password
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Secure Version -->
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card border-success shadow">
+
+                <div class="card-header bg-success text-white">
+
+                    <h4 class="mb-0">
+                        🟢 Secure Version
+                    </h4>
+
+                </div>
+
+                <div class="card-body">
+
+                    <p>
+                        The secure version limits failed authentication
+                        attempts.
+                    </p>
+
+                    <p>
+                        After three failed attempts, authentication is
+                        temporarily blocked.
+                    </p>
+
+                    <form asp-controller="DictionaryAttack"
+                          asp-action="Secure"
+                          method="post">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Username
+                            </label>
+
+                            <input type="text"
+                                   name="username"
+                                   class="form-control"
+                                   value="admin"
+                                   required />
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Password
+                            </label>
+
+                            <input type="text"
+                                   name="password"
+                                   class="form-control"
+                                   placeholder="Try a dictionary password"
+                                   required />
+
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-success">
+
+                            Try Password
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Training Dictionary -->
+
+    <div class="card shadow mt-3">
+
+        <div class="card-header bg-dark text-white">
+
+            <h4 class="mb-0">
+                Training Dictionary
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <p>
+                Use the following passwords to demonstrate the attack:
+            </p>
+
+            <div class="row">
+
+                <div class="col-md-3 mb-2">
+                    <code>123456</code>
+                </div>
+
+                <div class="col-md-3 mb-2">
+                    <code>password</code>
+                </div>
+
+                <div class="col-md-3 mb-2">
+                    <code>admin123</code>
+                </div>
+
+                <div class="col-md-3 mb-2">
+                    <code>cyber123</code>
+                </div>
+
+            </div>
+
+            <hr />
+
+            <p class="mb-0">
+
+                <strong>Lab username:</strong> admin
+
+                <br />
+
+                <strong>Correct password:</strong> cyber123
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Security Explanation -->
+
+    <div class="card shadow mt-4">
+
+        <div class="card-body">
+
+            <h4>Security Mitigation</h4>
+
+            <ul>
+
+                <li>
+                    Limit repeated authentication attempts.
+                </li>
+
+                <li>
+                    Temporarily block authentication after
+                    multiple failed attempts.
+                </li>
+
+                <li>
+                    Use strong password policies.
+                </li>
+
+                <li>
+                    Use multi-factor authentication when possible.
+                </li>
+
+                <li>
+                    Monitor and log suspicious authentication activity.
+                </li>
+
+            </ul>
+
+            <p class="mb-0">
+
+                The secure version prevents unlimited password
+                guessing by temporarily blocking authentication
+                after repeated failures.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>

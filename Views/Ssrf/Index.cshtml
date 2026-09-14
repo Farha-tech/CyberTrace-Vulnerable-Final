@@ -1,0 +1,188 @@
+﻿@{
+    ViewData["Title"] = "SSRF Lab";
+}
+
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+
+        <h1>Server-Side Request Forgery (SSRF)</h1>
+
+        <p class="text-muted">
+            CyberTrace SSRF Security Lab
+        </p>
+
+    </div>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger shadow">
+
+            <h5>
+                Request Blocked
+            </h5>
+
+            <p class="mb-0">
+                @ViewBag.Error
+            </p>
+
+        </div>
+    }
+
+    <div class="row">
+
+        <!-- Vulnerable Version -->
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card border-danger shadow">
+
+                <div class="card-header bg-danger text-white">
+
+                    <h4 class="mb-0">
+                        🔴 Vulnerable Version
+                    </h4>
+
+                </div>
+
+                <div class="card-body">
+
+                    <p>
+                        The vulnerable version allows the server to request
+                        any URL provided by the user.
+                    </p>
+
+                    <form asp-controller="Ssrf"
+                          asp-action="Vulnerable"
+                          method="post">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Target URL
+                            </label>
+
+                            <input type="text"
+                                   name="targetUrl"
+                                   class="form-control"
+                                   placeholder="https://example.com"
+                                   required />
+
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-danger">
+                            Send Server Request
+                        </button>
+
+                    </form>
+
+                    <hr />
+
+                    <p class="small text-muted mb-1">
+                        Internal SSRF test URL:
+                    </p>
+
+                    <code>
+                        https://localhost:7190/Ssrf/InternalResource
+                    </code>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Secure Version -->
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card border-success shadow">
+
+                <div class="card-header bg-success text-white">
+
+                    <h4 class="mb-0">
+                        🟢 Secure Version
+                    </h4>
+
+                </div>
+
+                <div class="card-body">
+
+                    <p>
+                        The secure version validates the URL and blocks
+                        local and private network addresses.
+                    </p>
+
+                    <form asp-controller="Ssrf"
+                          asp-action="Secure"
+                          method="post">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Target URL
+                            </label>
+
+                            <input type="text"
+                                   name="targetUrl"
+                                   class="form-control"
+                                   placeholder="https://example.com"
+                                   required />
+
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-success">
+                            Send Secure Request
+                        </button>
+
+                    </form>
+
+                    <hr />
+
+                    <p class="small text-muted">
+                        Try the same internal URL here.
+                        It should be blocked.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card shadow mt-3">
+
+        <div class="card-body">
+
+            <h4>What is SSRF?</h4>
+
+            <p>
+                Server-Side Request Forgery occurs when an attacker can
+                control a URL that the server requests.
+            </p>
+
+            <p>
+                This can allow attackers to access internal services,
+                localhost resources, or private network addresses.
+            </p>
+
+            <h5>Secure Mitigation</h5>
+
+            <ul>
+                <li>Validate the supplied URL.</li>
+                <li>Allow only expected schemes such as HTTPS.</li>
+                <li>Block localhost and private network addresses.</li>
+                <li>Use an allowlist of trusted destinations when possible.</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>

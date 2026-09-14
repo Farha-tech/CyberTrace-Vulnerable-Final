@@ -1,0 +1,101 @@
+﻿@model List<CyberTrace.Models.SqlUser>
+
+@{
+    ViewData["Title"] = "Secure SQL Injection Lab";
+}
+
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+
+        <span class="badge">
+            SECURE SQL INJECTION LAB
+        </span>
+
+        <h1 class="mt-3">
+            SQL Injection - Secure Version
+        </h1>
+
+        <p>
+            The application safely handles user input using parameterized queries.
+        </p>
+
+    </div>
+
+    <div class="card p-4 mx-auto" style="max-width: 800px;">
+
+        <h3>Secure SQL Injection Test</h3>
+
+        <p>
+            Try searching for a username. SQL Injection payloads should not bypass the query.
+        </p>
+
+        <form method="get"
+              asp-controller="SqlInjection"
+              asp-action="Secure">
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Username
+                </label>
+
+                <input type="text"
+                       name="username"
+                       class="form-control"
+                       placeholder="Enter username"
+                       required />
+
+            </div>
+
+            <button type="submit" class="scan-button">
+                Secure Search
+            </button>
+
+        </form>
+
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="mt-5">
+
+            <h3>
+                Search Results
+            </h3>
+
+            @foreach (var user in Model)
+            {
+                <div class="card p-4 mt-3">
+
+                    <h5>
+                        @user.Username
+                    </h5>
+
+                    <p>
+                        <strong>ID:</strong> @user.Id
+                    </p>
+
+                    <p>
+                        <strong>Email:</strong> @user.Email
+                    </p>
+
+                    <p>
+                        <strong>Role:</strong> @user.Role
+                    </p>
+
+                </div>
+            }
+
+        </div>
+    }
+    else if (Context.Request.Query.ContainsKey("username"))
+    {
+        <div class="alert alert-success mt-5">
+
+            No users found.
+
+        </div>
+    }
+
+</div>

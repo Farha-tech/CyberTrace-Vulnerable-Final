@@ -1,0 +1,103 @@
+﻿@{
+    ViewData["Title"] = "Command Injection Secure Result";
+}
+
+<div class="container mt-5">
+
+    <div class="card border-success shadow">
+
+        <div class="card-header bg-success text-white">
+
+            <h2>
+                🟢 Secure Command Execution
+            </h2>
+
+        </div>
+
+        <div class="card-body">
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-success">
+
+                    <strong>Request Blocked:</strong>
+
+                    <p class="mb-0">
+                        @ViewBag.Error
+                    </p>
+
+                </div>
+
+                <div class="alert alert-info">
+
+                    <strong>Why was it blocked?</strong>
+
+                    <p class="mb-0 mt-2">
+
+                        The secure implementation only allows
+                        predefined commands from an allowlist.
+                        Arbitrary commands are rejected before
+                        reaching the operating system.
+
+                    </p>
+
+                </div>
+            }
+            else
+            {
+                <div class="mb-3">
+
+                    <strong>Approved Command:</strong>
+
+                    <div class="mt-2">
+
+                        <code>
+                            @ViewBag.Command
+                        </code>
+
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <strong>Command Output:</strong>
+
+                    <pre class="bg-dark text-light p-3 rounded"
+                         style="white-space: pre-wrap;">@ViewBag.Output</pre>
+
+                </div>
+
+                @if (!string.IsNullOrWhiteSpace(ViewBag.ErrorOutput))
+                {
+                    <div class="mb-3">
+
+                        <strong>Error Output:</strong>
+
+                        <pre class="bg-dark text-danger p-3 rounded"
+                             style="white-space: pre-wrap;">@ViewBag.ErrorOutput</pre>
+
+                    </div>
+                }
+
+                <div class="alert alert-success">
+
+                    The command was executed because it matched
+                    the predefined allowlist.
+
+                </div>
+            }
+
+            <a asp-controller="CommandInjection"
+               asp-action="Index"
+               class="btn btn-secondary">
+
+                Back to Command Injection Lab
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "DOM XSS";
+}
+
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+
+        <span class="badge">
+            XSS SECURITY LAB
+        </span>
+
+        <h1 class="mt-3">
+            DOM-Based XSS
+        </h1>
+
+        <p>
+            This page demonstrates unsafe client-side handling of URL parameters.
+        </p>
+
+    </div>
+
+    <div class="card p-4 mx-auto" style="max-width: 800px;">
+
+        <h3>Vulnerable DOM XSS</h3>
+
+        <p>
+            The value from the URL is directly inserted into the page.
+        </p>
+
+        <div id="output" class="alert alert-warning">
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+
+    const message = params.get("message");
+
+    document.getElementById("output").innerHTML = message || "No message provided.";
+</script>

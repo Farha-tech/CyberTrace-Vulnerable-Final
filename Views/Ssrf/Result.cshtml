@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = "SSRF Vulnerable Result";
+}
+
+<div class="container mt-5">
+
+    <div class="card border-danger shadow">
+
+        <div class="card-header bg-danger text-white">
+
+            <h2>
+                🔴 SSRF Vulnerable Result
+            </h2>
+
+        </div>
+
+        <div class="card-body">
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger">
+
+                    <strong>Error:</strong>
+
+                    @ViewBag.Error
+
+                </div>
+            }
+            else
+            {
+                <div class="mb-3">
+
+                    <strong>Requested URL:</strong>
+
+                    <div class="mt-2">
+                        <code>
+                            @ViewBag.TargetUrl
+                        </code>
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <strong>HTTP Status Code:</strong>
+
+                    <span class="badge bg-secondary">
+                        @ViewBag.StatusCode
+                    </span>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <strong>Server Response:</strong>
+
+                    <pre class="bg-dark text-light p-3 rounded"
+                         style="white-space: pre-wrap;">@ViewBag.Response</pre>
+
+                </div>
+
+                <div class="alert alert-warning">
+
+                    <strong>SSRF Demonstration:</strong>
+
+                    The server requested the supplied URL on behalf
+                    of the user without validating whether the
+                    destination was internal or private.
+
+                </div>
+            }
+
+            <a asp-controller="Ssrf"
+               asp-action="Index"
+               class="btn btn-secondary">
+
+                Back to SSRF Lab
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

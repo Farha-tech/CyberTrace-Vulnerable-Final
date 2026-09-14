@@ -1,0 +1,98 @@
+﻿@{
+    ViewData["Title"] = "Fuzzing Vulnerable Result";
+}
+
+<div class="container mt-5">
+
+    <div class="card border-danger shadow">
+
+        <div class="card-header bg-danger text-white">
+
+            <h2>
+                🔴 Fuzzing - Vulnerable Result
+            </h2>
+
+        </div>
+
+        <div class="card-body">
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger">
+
+                    <strong>Error:</strong>
+
+                    <p class="mb-0">
+                        @ViewBag.Error
+                    </p>
+
+                </div>
+            }
+            else
+            {
+                <div class="mb-3">
+
+                    <strong>Submitted Input:</strong>
+
+                    <pre class="bg-dark text-light p-3 rounded mt-2"
+                         style="white-space: pre-wrap;">@ViewBag.Input</pre>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <strong>Input Length:</strong>
+
+                    <span class="badge bg-secondary">
+                        @ViewBag.Length
+                    </span>
+
+                </div>
+
+                @if (ViewBag.Warning != null)
+                {
+                    <div class="alert alert-warning">
+
+                        <strong>Security Warning:</strong>
+
+                        <p class="mb-0">
+                            @ViewBag.Warning
+                        </p>
+
+                    </div>
+                }
+
+                <div class="alert alert-danger">
+
+                    <h5>
+                        Why is this vulnerable?
+                    </h5>
+
+                    <p class="mb-0">
+
+                        The application accepted the supplied input
+                        without applying appropriate input validation
+                        or length restrictions.
+
+                        A fuzzer can therefore send many unusual,
+                        malformed, or oversized inputs to test the
+                        application's behavior.
+
+                    </p>
+
+                </div>
+            }
+
+            <a asp-controller="Fuzzing"
+               asp-action="Index"
+               class="btn btn-secondary">
+
+                Back to Fuzzing Lab
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

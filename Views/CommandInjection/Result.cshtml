@@ -1,0 +1,94 @@
+﻿@{
+    ViewData["Title"] = "Command Injection Vulnerable Result";
+}
+
+<div class="container mt-5">
+
+    <div class="card border-danger shadow">
+
+        <div class="card-header bg-danger text-white">
+
+            <h2>
+                🔴 Vulnerable Command Execution
+            </h2>
+
+        </div>
+
+        <div class="card-body">
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger">
+
+                    <strong>Error:</strong>
+
+                    <p class="mb-0">
+                        @ViewBag.Error
+                    </p>
+
+                </div>
+            }
+            else
+            {
+                <div class="mb-3">
+
+                    <strong>Executed Command:</strong>
+
+                    <div class="mt-2">
+
+                        <code>
+                            @ViewBag.Command
+                        </code>
+
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <strong>Command Output:</strong>
+
+                    <pre class="bg-dark text-light p-3 rounded"
+                         style="white-space: pre-wrap;">@ViewBag.Output</pre>
+
+                </div>
+
+                @if (!string.IsNullOrWhiteSpace(ViewBag.ErrorOutput))
+                {
+                    <div class="mb-3">
+
+                        <strong>Error Output:</strong>
+
+                        <pre class="bg-dark text-danger p-3 rounded"
+                             style="white-space: pre-wrap;">@ViewBag.ErrorOutput</pre>
+
+                    </div>
+                }
+
+                <div class="alert alert-warning">
+
+                    <strong>Command Injection Demonstration:</strong>
+
+                    <p class="mb-0 mt-2">
+
+                        The application executed the command supplied
+                        by the user through the operating system shell.
+
+                    </p>
+
+                </div>
+            }
+
+            <a asp-controller="CommandInjection"
+               asp-action="Index"
+               class="btn btn-secondary">
+
+                Back to Command Injection Lab
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

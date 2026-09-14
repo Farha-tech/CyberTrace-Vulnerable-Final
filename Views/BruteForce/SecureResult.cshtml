@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Brute Force Secure Result";
+}
+
+<div class="container mt-5">
+
+    <div class="card border-success shadow">
+
+        <div class="card-header bg-success text-white">
+
+            <h2>
+                🟢 Secure Login Result
+            </h2>
+
+        </div>
+
+        <div class="card-body">
+
+            @if (ViewBag.Success != null)
+            {
+                <div class="alert alert-success">
+
+                    @ViewBag.Success
+
+                </div>
+            }
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-warning">
+
+                    <strong>Authentication Result:</strong>
+
+                    <p class="mb-0 mt-2">
+
+                        @ViewBag.Error
+
+                    </p>
+
+                </div>
+            }
+
+            <div class="alert alert-info">
+
+                <strong>Security Protection</strong>
+
+                <p class="mb-0 mt-2">
+
+                    The secure implementation limits repeated
+                    authentication failures and temporarily blocks
+                    further attempts after three failures.
+
+                </p>
+
+            </div>
+
+            <a asp-controller="BruteForce"
+               asp-action="Index"
+               class="btn btn-secondary">
+
+                Back to Brute Force Lab
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

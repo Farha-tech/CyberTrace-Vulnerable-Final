@@ -1,0 +1,214 @@
+﻿@{
+    ViewData["Title"] = "Brute Force Attack Lab";
+}
+
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+
+        <h1>Brute Force Attack</h1>
+
+        <p class="text-muted">
+            CyberTrace Brute Force Security Lab
+        </p>
+
+    </div>
+
+    <div class="row">
+
+        <!-- Vulnerable Version -->
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card border-danger shadow">
+
+                <div class="card-header bg-danger text-white">
+
+                    <h4 class="mb-0">
+                        🔴 Vulnerable Version
+                    </h4>
+
+                </div>
+
+                <div class="card-body">
+
+                    <p>
+                        This login allows unlimited failed attempts
+                        without rate limiting or temporary blocking.
+                    </p>
+
+                    <form asp-controller="BruteForce"
+                          asp-action="Vulnerable"
+                          method="post">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Username
+                            </label>
+
+                            <input type="text"
+                                   name="username"
+                                   class="form-control"
+                                   value="admin"
+                                   required />
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Password
+                            </label>
+
+                            <input type="password"
+                                   name="password"
+                                   class="form-control"
+                                   required />
+
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-danger">
+
+                            Try Login
+
+                        </button>
+
+                    </form>
+
+                    <hr />
+
+                    <p class="small text-muted mb-0">
+                        Try several incorrect passwords consecutively.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Secure Version -->
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card border-success shadow">
+
+                <div class="card-header bg-success text-white">
+
+                    <h4 class="mb-0">
+                        🟢 Secure Version
+                    </h4>
+
+                </div>
+
+                <div class="card-body">
+
+                    <p>
+                        This version temporarily blocks login attempts
+                        after repeated failures.
+                    </p>
+
+                    <form asp-controller="BruteForce"
+                          asp-action="Secure"
+                          method="post">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Username
+                            </label>
+
+                            <input type="text"
+                                   name="username"
+                                   class="form-control"
+                                   value="admin"
+                                   required />
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Password
+                            </label>
+
+                            <input type="password"
+                                   name="password"
+                                   class="form-control"
+                                   required />
+
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-success">
+
+                            Try Secure Login
+
+                        </button>
+
+                    </form>
+
+                    <hr />
+
+                    <p class="small text-muted mb-0">
+                        Three failed attempts trigger a temporary block.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <h4>What is a Brute Force Attack?</h4>
+
+            <p>
+                A brute force attack repeatedly attempts different
+                credentials until valid credentials are discovered.
+            </p>
+
+            <h5>Why is the Vulnerable Version Dangerous?</h5>
+
+            <p>
+                Without protections such as rate limiting or temporary
+                account blocking, an attacker can make a large number
+                of login attempts.
+            </p>
+
+            <h5>Secure Mitigation</h5>
+
+            <ul>
+
+                <li>
+                    Rate limit authentication requests.
+                </li>
+
+                <li>
+                    Temporarily block repeated failed attempts.
+                </li>
+
+                <li>
+                    Use strong password policies.
+                </li>
+
+                <li>
+                    Consider multi-factor authentication.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>

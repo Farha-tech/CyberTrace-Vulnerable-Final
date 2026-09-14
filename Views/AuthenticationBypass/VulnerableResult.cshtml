@@ -1,0 +1,88 @@
+﻿@{
+    ViewData["Title"] = "Authentication Bypass Vulnerable Result";
+}
+
+<div class="container mt-5">
+
+    <div class="card border-danger shadow">
+
+        <div class="card-header bg-danger text-white">
+
+            <h2>
+                🔴 Authentication Bypass - Vulnerable Result
+            </h2>
+
+        </div>
+
+        <div class="card-body">
+
+            @if (ViewBag.Success != null)
+            {
+                <div class="alert alert-danger">
+
+                    <h5>
+                        Authentication Bypass Successful
+                    </h5>
+
+                    <p class="mb-0">
+                        @ViewBag.Success
+                    </p>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <strong>Granted Role:</strong>
+
+                    <span class="badge bg-danger">
+                        @ViewBag.Role
+                    </span>
+
+                </div>
+
+                <div class="alert alert-warning">
+
+                    <strong>Security Problem:</strong>
+
+                    <p class="mb-0 mt-2">
+
+                        The application granted administrative privileges
+                        even though valid administrative credentials were
+                        not provided.
+
+                        The server trusted a role value supplied by the
+                        client.
+
+                    </p>
+
+                </div>
+            }
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger">
+
+                    <strong>
+                        Authentication Failed:
+                    </strong>
+
+                    <p class="mb-0">
+                        @ViewBag.Error
+                    </p>
+
+                </div>
+            }
+
+            <a asp-controller="AuthenticationBypass"
+               asp-action="Index"
+               class="btn btn-secondary">
+
+                Back to Authentication Bypass Lab
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

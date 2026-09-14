@@ -1,0 +1,337 @@
+﻿@{
+    ViewData["Title"] = "Authentication Bypass Lab";
+}
+
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+
+        <h1>Authentication Bypass Lab</h1>
+
+        <p class="text-muted">
+            CyberTrace Authentication Bypass Security Lab
+        </p>
+
+    </div>
+
+
+    <div class="alert alert-info shadow">
+
+        <h5>What is Authentication Bypass?</h5>
+
+        <p class="mb-0">
+
+            Authentication bypass occurs when an application allows
+            a user to access protected functionality without providing
+            valid authentication credentials.
+
+            This lab demonstrates the difference between trusting
+            client-controlled data and verifying authentication
+            on the server.
+
+        </p>
+
+    </div>
+
+
+    <div class="row">
+
+        <!-- Vulnerable Version -->
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card border-danger shadow">
+
+                <div class="card-header bg-danger text-white">
+
+                    <h4 class="mb-0">
+                        🔴 Vulnerable Version
+                    </h4>
+
+                </div>
+
+                <div class="card-body">
+
+                    <p>
+                        The vulnerable version incorrectly trusts a
+                        client-controlled role value.
+                    </p>
+
+                    <p>
+                        You can demonstrate the bypass by submitting
+                        invalid credentials together with the
+                        <strong>Admin</strong> role.
+                    </p>
+
+                    <form asp-controller="AuthenticationBypass"
+                          asp-action="Vulnerable"
+                          method="post">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Username
+                            </label>
+
+                            <input type="text"
+                                   name="username"
+                                   class="form-control"
+                                   value="attacker"
+                                   required />
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Password
+                            </label>
+
+                            <input type="text"
+                                   name="password"
+                                   class="form-control"
+                                   value="wrongpassword"
+                                   required />
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Role
+                            </label>
+
+                            <select name="role"
+                                    class="form-select">
+
+                                <option value="User">
+                                    User
+                                </option>
+
+                                <option value="Admin">
+                                    Admin
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-danger">
+
+                            Test Vulnerable Login
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Secure Version -->
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card border-success shadow">
+
+                <div class="card-header bg-success text-white">
+
+                    <h4 class="mb-0">
+                        🟢 Secure Version
+                    </h4>
+
+                </div>
+
+                <div class="card-body">
+
+                    <p>
+                        The secure version ignores the client-controlled
+                        role and verifies the credentials on the server.
+                    </p>
+
+                    <form asp-controller="AuthenticationBypass"
+                          asp-action="Secure"
+                          method="post">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Username
+                            </label>
+
+                            <input type="text"
+                                   name="username"
+                                   class="form-control"
+                                   value="attacker"
+                                   required />
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Password
+                            </label>
+
+                            <input type="text"
+                                   name="password"
+                                   class="form-control"
+                                   value="wrongpassword"
+                                   required />
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Role
+                            </label>
+
+                            <select name="role"
+                                    class="form-select">
+
+                                <option value="User">
+                                    User
+                                </option>
+
+                                <option value="Admin">
+                                    Admin
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-success">
+
+                            Test Secure Login
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Lab Credentials -->
+
+    <div class="card shadow mt-3">
+
+        <div class="card-header bg-dark text-white">
+
+            <h4 class="mb-0">
+                Authentication Bypass Test
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <h5>Vulnerable Test</h5>
+
+            <p>
+                Use invalid credentials and select:
+            </p>
+
+            <div class="mb-3">
+
+                <code>
+                    Username: attacker
+                </code>
+
+                <br />
+
+                <code>
+                    Password: wrongpassword
+                </code>
+
+                <br />
+
+                <code>
+                    Role: Admin
+                </code>
+
+            </div>
+
+            <p>
+                The vulnerable application should incorrectly grant
+                administrative access.
+            </p>
+
+            <hr />
+
+            <h5>Valid Credentials</h5>
+
+            <p class="mb-0">
+
+                <code>
+                    Username: admin
+                </code>
+
+                <br />
+
+                <code>
+                    Password: admin123
+                </code>
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Security Explanation -->
+
+    <div class="card shadow mt-4">
+
+        <div class="card-body">
+
+            <h4>Security Mitigation</h4>
+
+            <ul>
+
+                <li>
+                    Always verify authentication on the server.
+                </li>
+
+                <li>
+                    Never trust role or privilege values supplied
+                    by the client.
+                </li>
+
+                <li>
+                    Assign authorization roles on the server side.
+                </li>
+
+                <li>
+                    Verify authentication before granting access
+                    to protected resources.
+                </li>
+
+            </ul>
+
+            <p class="mb-0">
+
+                The secure implementation prevents the bypass because
+                the submitted role does not determine the user's
+                privileges.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>

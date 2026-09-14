@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Brute Force Vulnerable Result";
+}
+
+<div class="container mt-5">
+
+    <div class="card border-danger shadow">
+
+        <div class="card-header bg-danger text-white">
+
+            <h2>
+                🔴 Vulnerable Login Result
+            </h2>
+
+        </div>
+
+        <div class="card-body">
+
+            @if (ViewBag.Success != null)
+            {
+                <div class="alert alert-success">
+
+                    @ViewBag.Success
+
+                </div>
+            }
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger">
+
+                    @ViewBag.Error
+
+                </div>
+            }
+
+            <div class="alert alert-warning">
+
+                <strong>Brute Force Demonstration</strong>
+
+                <p class="mb-0 mt-2">
+
+                    The application accepted another authentication
+                    attempt without applying rate limiting or
+                    temporary account blocking.
+
+                </p>
+
+            </div>
+
+            <a asp-controller="BruteForce"
+               asp-action="Index"
+               class="btn btn-secondary">
+
+                Back to Brute Force Lab
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

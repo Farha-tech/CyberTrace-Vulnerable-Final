@@ -1,0 +1,159 @@
+﻿@model CyberTrace.Models.ScanResult
+
+@{
+    ViewData["Title"] = "Scan Result";
+}
+
+<div class="result-page">
+
+    <div class="result-header">
+
+        <span class="badge">SCAN COMPLETED</span>
+
+        <h1>Security Scan Result</h1>
+
+        <p>
+            Analysis result for the selected target.
+        </p>
+
+    </div>
+
+    <div class="target-card">
+
+        <div>
+            <span class="result-label">TARGET URL</span>
+
+            <h2>@Model.TargetUrl</h2>
+        </div>
+
+        <div>
+            <span class="result-label">SCAN DATE</span>
+
+            <p>
+                @Model.ScanDate.ToString("dd/MM/yyyy HH:mm")
+            </p>
+        </div>
+
+    </div>
+
+    @if (Model.IsSafe)
+    {
+        <div class="status-card safe">
+
+            <div class="status-icon">✓</div>
+
+            <div>
+                <h2>No Vulnerabilities Detected</h2>
+
+                <p>
+                    The current scan did not identify any
+                    vulnerabilities.
+                </p>
+            </div>
+
+        </div>
+    }
+    else
+    {
+        <div class="status-card danger">
+
+            <div class="status-icon">!</div>
+
+            <div>
+                <h2>Potential Vulnerabilities Found</h2>
+
+                <p>
+                    Review the findings below.
+                </p>
+            </div>
+
+        </div>
+    }
+
+    @if (Model.Vulnerabilities.Any())
+    {
+        <div class="vulnerabilities">
+
+            <h2>Detected Vulnerabilities</h2>
+
+            @foreach (var vulnerability in Model.Vulnerabilities)
+            {
+                <div class="vulnerability-card">
+
+                    <div class="vulnerability-top">
+
+                        <h3>@vulnerability.Name</h3>
+
+                        <span class="severity">
+                            @vulnerability.Severity
+                        </span>
+
+                    </div>
+
+                    <p>
+                        <strong>Category:</strong>
+                        @vulnerability.Category
+                    </p>
+
+                    <p>
+                        @vulnerability.Description
+                    </p>
+
+                    <div class="attack-scenario">
+
+                        <strong>Attack Scenario:</strong>
+
+                        <p>
+                            @vulnerability.AttackScenario
+                        </p>
+
+                    </div>
+
+                    <div class="recommendation">
+
+                        <strong>Recommendation:</strong>
+
+                        <span>
+                            @vulnerability.Recommendation
+                        </span>
+
+                    </div>
+
+                    <div class="status">
+
+                        <strong>Status:</strong>
+
+                        @if (vulnerability.IsFixed)
+                        {
+                            <span>Fixed</span>
+                        }
+                        else
+                        {
+                            <span>Not Fixed</span>
+                        }
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+    }
+
+    <div class="result-actions">
+
+        <a asp-controller="Scan"
+           asp-action="Index"
+           class="btn-primary">
+            New Scan
+        </a>
+
+        <a asp-controller="Home"
+           asp-action="Index"
+           class="btn-secondary">
+            Back Home
+        </a>
+
+    </div>
+
+</div>

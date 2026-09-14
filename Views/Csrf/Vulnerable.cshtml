@@ -1,0 +1,43 @@
+﻿@model CyberTrace.Models.EmailChangeModel
+
+@{
+    ViewData["Title"] = "CSRF Vulnerable";
+}
+
+<div class="container mt-5">
+
+    <h1>CSRF Vulnerable Lab</h1>
+
+    <p>
+        This form changes the email without CSRF protection.
+    </p>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.Message
+        </div>
+    }
+
+    <form method="post">
+
+        <div class="mb-3">
+            <label>Current Email</label>
+            <input asp-for="CurrentEmail"
+                   class="form-control"
+                   readonly />
+        </div>
+
+        <div class="mb-3">
+            <label>New Email</label>
+            <input asp-for="NewEmail"
+                   class="form-control" />
+        </div>
+
+        <button class="btn btn-danger">
+            Change Email
+        </button>
+
+    </form>
+
+</div>

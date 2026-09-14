@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Security Scan";
+}
+
+<div class="scan-page">
+
+    <div class="scan-header">
+        <span class="badge">SECURITY SCANNER</span>
+
+        <h1>Scan Your Website</h1>
+
+        <p>
+            Enter the target website URL to start a basic security assessment.
+        </p>
+    </div>
+
+    <div class="scan-box">
+
+        <div class="scan-icon">
+            🔍
+        </div>
+
+        <h2>Target URL</h2>
+
+        <p class="scan-description">
+            Enter a website URL that you are authorized to test.
+        </p>
+
+        <form asp-controller="Scan" asp-action="Index" method="post">
+
+            <div class="input-group">
+                <label for="targetUrl">Website URL</label>
+
+                <input type="url"
+                       id="targetUrl"
+                       name="targetUrl"
+                       placeholder="https://example.com"
+                       required />
+
+            </div>
+
+            <button type="submit" class="scan-button">
+                Start Security Scan
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="warning-box">
+        <strong>⚠ Authorized Testing Only</strong>
+
+        <p>
+            Only scan websites and applications that you own
+            or have explicit permission to test.
+        </p>
+    </div>
+
+</div>

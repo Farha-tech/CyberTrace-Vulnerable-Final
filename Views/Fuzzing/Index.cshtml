@@ -1,0 +1,246 @@
+﻿@{
+    ViewData["Title"] = "Fuzzing Lab";
+}
+
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+
+        <h1>Fuzzing Lab</h1>
+
+        <p class="text-muted">
+            CyberTrace Input Fuzzing Security Lab
+        </p>
+
+    </div>
+
+    <div class="alert alert-info shadow">
+
+        <h5>What is Fuzzing?</h5>
+
+        <p class="mb-0">
+            Fuzzing is a security testing technique that sends
+            unexpected, malformed, or unusual input to an application
+            to identify weaknesses in input handling.
+        </p>
+
+    </div>
+
+
+    <div class="row">
+
+        <!-- Vulnerable Version -->
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card border-danger shadow">
+
+                <div class="card-header bg-danger text-white">
+
+                    <h4 class="mb-0">
+                        🔴 Vulnerable Version
+                    </h4>
+
+                </div>
+
+                <div class="card-body">
+
+                    <p>
+                        This version accepts arbitrary input without
+                        proper length or content validation.
+                    </p>
+
+                    <form asp-controller="Fuzzing"
+                          asp-action="Vulnerable"
+                          method="post">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Test Input
+                            </label>
+
+                            <textarea name="input"
+                                      class="form-control"
+                                      rows="5"
+                                      placeholder="Enter normal or unusual input..."
+                                      required></textarea>
+
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-danger">
+
+                            Send Fuzzing Input
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Secure Version -->
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card border-success shadow">
+
+                <div class="card-header bg-success text-white">
+
+                    <h4 class="mb-0">
+                        🟢 Secure Version
+                    </h4>
+
+                </div>
+
+                <div class="card-body">
+
+                    <p>
+                        This version validates the input before
+                        processing it.
+                    </p>
+
+                    <form asp-controller="Fuzzing"
+                          asp-action="Secure"
+                          method="post">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Test Input
+                            </label>
+
+                            <textarea name="input"
+                                      class="form-control"
+                                      rows="5"
+                                      placeholder="Enter test input..."
+                                      required></textarea>
+
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-success">
+
+                            Validate Input
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Fuzzing Test Cases -->
+
+    <div class="card shadow mt-3">
+
+        <div class="card-header bg-dark text-white">
+
+            <h4 class="mb-0">
+                Fuzzing Test Cases
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <p>
+                Try the following inputs to demonstrate the difference
+                between the vulnerable and secure implementations.
+            </p>
+
+            <div class="mb-3">
+
+                <strong>Normal input:</strong>
+
+                <br />
+
+                <code>Hello CyberTrace</code>
+
+            </div>
+
+            <div class="mb-3">
+
+                <strong>Long input:</strong>
+
+                <br />
+
+                <code>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</code>
+
+            </div>
+
+            <div class="mb-3">
+
+                <strong>Script-like input:</strong>
+
+                <br />
+
+                <code>&lt;script&gt;alert('Fuzzing')&lt;/script&gt;</code>
+
+            </div>
+
+            <div class="mb-0">
+
+                <strong>Special characters:</strong>
+
+                <br />
+
+                <code>!#$%^&amp;*()_+-=[]|;:,.?</code>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Security Explanation -->
+
+    <div class="card shadow mt-4">
+
+        <div class="card-body">
+
+            <h4>Security Mitigation</h4>
+
+            <ul>
+
+                <li>
+                    Validate user input before processing it.
+                </li>
+
+                <li>
+                    Apply reasonable input length limits.
+                </li>
+
+                <li>
+                    Reject invalid or dangerous input where appropriate.
+                </li>
+
+                <li>
+                    Properly encode output before displaying
+                    user-controlled data.
+                </li>
+
+                <li>
+                    Handle unexpected input without exposing
+                    application errors or sensitive information.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>

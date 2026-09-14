@@ -1,0 +1,153 @@
+﻿@{
+    ViewData["Title"] = "HTTP Security Secure Result";
+}
+
+<div class="container mt-5">
+
+    <div class="card border-success shadow">
+
+        <div class="card-header bg-success text-white">
+
+            <h2>
+                🟢 Secure HTTP Security Result
+            </h2>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="alert alert-success">
+
+                <h5>
+                    Security Headers Applied
+                </h5>
+
+                <p class="mb-0">
+                    @ViewBag.Message
+                </p>
+
+            </div>
+
+
+            <div class="card border-success mb-4">
+
+                <div class="card-header bg-success text-white">
+
+                    <strong>
+                        Security Headers
+                    </strong>
+
+                </div>
+
+                <div class="card-body">
+
+                    <ul>
+
+                        <li>
+                            <strong>
+                                X-Content-Type-Options:
+                            </strong>
+
+                            <code>
+                                nosniff
+                            </code>
+                        </li>
+
+                        <li>
+                            <strong>
+                                X-Frame-Options:
+                            </strong>
+
+                            <code>
+                                DENY
+                            </code>
+                        </li>
+
+                        <li>
+                            <strong>
+                                Referrer-Policy:
+                            </strong>
+
+                            <code>
+                                strict-origin-when-cross-origin
+                            </code>
+                        </li>
+
+                        <li>
+                            <strong>
+                                Permissions-Policy:
+                            </strong>
+
+                            <code>
+                                geolocation=(), microphone=(), camera=()
+                            </code>
+                        </li>
+
+                        <li>
+                            <strong>
+                                Content-Security-Policy:
+                            </strong>
+
+                            <code>
+                                default-src 'self'
+                            </code>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <div class="alert alert-info">
+
+                <h5>
+                    Why does this work?
+                </h5>
+
+                <p class="mb-0">
+
+                    The secure implementation explicitly instructs
+                    the browser to apply additional security
+                    restrictions.
+
+                    It also removes unnecessary headers that could
+                    disclose implementation details.
+
+                </p>
+
+            </div>
+
+
+            <div class="alert alert-success">
+
+                <strong>
+                    Authentication Security:
+                </strong>
+
+                <p class="mb-0 mt-2">
+
+                    Authentication and authorization should always
+                    be validated on the server, while HTTPS should
+                    be used to protect credentials and session data
+                    during transmission.
+
+                </p>
+
+            </div>
+
+
+            <a asp-controller="HttpSecurity"
+               asp-action="Index"
+               class="btn btn-secondary">
+
+                Back to HTTP Security Lab
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
